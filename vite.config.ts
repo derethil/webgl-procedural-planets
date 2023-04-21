@@ -7,4 +7,7 @@ export default defineConfig({
   css: {
     postcss,
   },
+  ssr: {
+    noExternal: ["three", "troika-three-text"],
+  },
 });

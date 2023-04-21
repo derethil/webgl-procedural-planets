@@ -1,7 +1,7 @@
 <script>
-  import Cube from "./lib/scenes/Cube.svelte";
+  import MainScene from "./lib/gl/MainScene.svelte";
 </script>
 
 <div class="h-screen">
-  <Cube />
+  <MainScene />
 </div>

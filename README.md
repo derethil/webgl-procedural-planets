@@ -17,10 +17,14 @@ A step by step series of examples that tell you how to get a development env run
 
 Install dependencies
 
+```
 $ yarn install
+```
 
 ### Running
 
 Run the development server with
 
+```
 $ yarn dev
+```

@@ -1,11 +1,10 @@
 <script>
   import { Canvas, T } from "@threlte/core";
-  import { Hexsphere } from "../Hexsphere";
+  import { Hexsphere } from "../lib/Hexsphere";
   import { OrbitControls } from "@threlte/core";
   import Tile from "./components/Tile.svelte";
-  import { degToRad } from "three/src/math/MathUtils";
 
-  const hexsphere = new Hexsphere(1, 5, 1);
+  const hexsphere = new Hexsphere(1, 10, 1);
 </script>
 
 <div class="h-full w-full">

@@ -1,6 +1,6 @@
 <script lang="ts">
   import { InteractiveObject, T } from "@threlte/core";
-  import { Tile } from "../../Hexsphere";
+  import { Tile } from "../../lib/Hexsphere";
   import {
     BufferGeometry,
     Float32BufferAttribute,
@@ -9,12 +9,12 @@
   } from "three";
   import type { MeshProps } from "@threlte/core/dist/objects/Mesh.svelte";
   import { spring } from "svelte/motion";
+  import { scaleDirection } from "../../lib/stores";
 
   // Props
 
   export let baseTile: Tile;
   let depth = spring(2);
-  export let debug: boolean = false;
   export let meshProps: Omit<MeshProps, "geometry" | "material"> = {};
   // State
   $: vertices = computeVertices(baseTile);
@@ -69,52 +69,17 @@
     return geometry;
   };
 
-  // Debug
-  $: groupedVertices = debug
-    ? vertices.reduce((acc, vertex, i) => {
-        if (i % 3 === 0) {
-          acc.push([]);
-        }
-        acc[acc.length - 1].push(vertex);
-        return acc;
-      }, [] as number[][])
-    : [];
-
-  let currRed = 0;
-
-  const handleClick = (i: number) => {
-    currRed = i;
-    console.log(i);
-  };
-
   // Three.js
   let material: MeshStandardMaterial;
+  let mesh: Mesh;
   $: if (material) {
     material.flatShading = true;
   }
-
-  let mesh: Mesh;
   $: if (mesh) {
     mesh.castShadow = true;
     mesh.receiveShadow = true;
   }
 </script>
-
-{#if debug}
-  <T.Group>
-    {#each groupedVertices as vertex, i}
-      <T.Mesh let:ref position={vertex} interactive>
-        <InteractiveObject
-          object={ref}
-          interactive
-          on:pointerenter={() => handleClick(i)}
-        />
-        <T.SphereGeometry args={[0.1, 16, 16]} />
-        <T.MeshStandardMaterial color={i === currRed ? "red" : "blue"} />
-      </T.Mesh>
-    {/each}
-  </T.Group>
-{/if}
 
 <T.Mesh
   {geometry}
@@ -127,6 +92,6 @@
   <InteractiveObject
     object={meshObject}
     interactive
-    on:pointerenter={() => ($depth = 1.4)}
+    on:pointerenter={() => ($depth = $scaleDirection === "in" ? 1.5 : 2.5)}
   />
 </T.Mesh>

@@ -28,6 +28,8 @@
   "dependencies": {
     "@threlte/core": "^5.0.9",
     "@threlte/extras": "^4.9.3",
+    "alea": "^1.0.1",
+    "simplex-noise": "^4.0.1",
     "three": "^0.151.3"
   }
 }

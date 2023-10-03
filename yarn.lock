@@ -236,6 +236,11 @@
   resolved "https://registry.yarnpkg.com/@types/webxr/-/webxr-0.5.1.tgz#4908349419104bd476a4252d04e4c3abb496748d"
   integrity sha512-xlFXPfgJR5vIuDefhaHuUM9uUgvPaXB6GKdXy2gdEh8gBWQZ2ul24AJz3foUd8NNKlSTQuWYJpCb1/pL81m1KQ==
 
+alea@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/alea/-/alea-1.0.1.tgz#957f60741c5ad11b13f72aa02a6b89fe96a26dc4"
+  integrity sha512-QU+wv+ziDXaMxRdsQg/aH7sVfWdhKps5YP97IIwFkHCsbDZA3k87JXoZ5/iuemf4ntytzIWeScrRpae8+lDrXA==
+
 any-promise@^1.0.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/any-promise/-/any-promise-1.3.0.tgz#abc6afeedcea52e809cdc0376aed3ce39635d17f"
@@ -964,6 +969,11 @@ simple-swizzle@^0.2.2:
   integrity sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg==
   dependencies:
     is-arrayish "^0.3.1"
+
+simplex-noise@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/simplex-noise/-/simplex-noise-4.0.1.tgz#1573a4eaa46ce488bdf5f1e7ab3a1f798126781f"
+  integrity sha512-zl/+bdSqW7HJOQ0oDbxrNYaF4F5ik0i7M6YOYmEoIJNtg16NpvWaTTM1Y7oV/7T0jFljawLgYPS81Uu2rsfo1A==
 
 sorcery@^0.10.0:
   version "0.10.0"

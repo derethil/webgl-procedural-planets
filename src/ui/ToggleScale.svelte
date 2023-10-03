@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { scaleDirection, ScaleDirection } from "../lib/stores/scaleDirection";
-  import { planetParams } from "../lib/stores/planetParams";
+  import { scaleDirection, ScaleDirection } from "../stores/scaleDirection";
 
   let checked = false;
   $: $scaleDirection = checked ? ScaleDirection.IN : ScaleDirection.OUT;

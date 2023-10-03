@@ -1,6 +1,6 @@
 import Alea from "alea";
 import { createNoise3D } from "simplex-noise";
-import type { Vector3 } from "../dto/vector";
+import type { Vector3 } from "../lib/dto/vector";
 import type { NoiseParams } from "../stores/planetParams";
 
 // https://cmaher.github.io/posts/working-with-simplex-noise/

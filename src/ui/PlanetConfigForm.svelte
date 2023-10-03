@@ -1,6 +1,6 @@
 <script>
   import { makeSeed } from "../util/seeds";
-  import { planetParams } from "../lib/stores/planetParams";
+  import { planetParams } from "../stores/planetParams";
   import ToggleScale from "./ToggleScale.svelte";
 
   function regenerate() {

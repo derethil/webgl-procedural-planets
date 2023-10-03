@@ -8,37 +8,29 @@
     MeshStandardMaterial,
   } from "three";
   import type { MeshProps } from "@threlte/core/dist/objects/Mesh.svelte";
-  import { planetParams, noiseParams } from "../../lib/stores/planetParams";
-  import { getNoise } from "../../lib/noise/noise";
+  import { tileAttributes } from "../../features/tiles/attributes";
+  import type { TileAttributes } from "../../lib/dto/tileAttributes";
 
   // Props
   export let baseTile: Tile;
   export let meshProps: Omit<MeshProps, "geometry" | "material"> = {};
 
   // State
-  $: depth = tileDepthFromNoise(baseTile);
-  $: vertices = tileVerticesFromDepth(baseTile);
+  $: attributes = tileAttributes(baseTile);
+  $: vertices = tileVertices(baseTile);
   $: geometry = tileGeometry(baseTile);
 
-  const tileVerticesFromDepth = (tile: Tile) => {
+  const tileVertices = (tile: Tile) => {
     return tile.boundary.flatMap((vertex) => [
       // Interior Vertices
       vertex.x,
       vertex.y,
       vertex.z,
       // Exterior Vertices
-      vertex.x * depth,
-      vertex.y * depth,
-      vertex.z * depth,
+      vertex.x * attributes.depth,
+      vertex.y * attributes.depth,
+      vertex.z * attributes.depth,
     ]);
-  };
-
-  // Samples noise at the center of the tile to determine depth
-  const tileDepthFromNoise = (tile: Tile) => {
-    const position = tile.centerPoint;
-    const noise = getNoise($planetParams.seed, position, $noiseParams);
-    const depth = Math.max(noise, 0.22) + 1;
-    return depth;
   };
 
   // Calculate indices for tile geometry (triangles)
@@ -70,9 +62,17 @@
     const indices = tileIndices(tile);
     const geometry = new BufferGeometry();
 
+    const color = attributes.biome.color;
+    const colors = new Array(vertices.length / 3).fill(color).flat();
+
     geometry.setAttribute(
       "position",
       new Float32BufferAttribute(vertices, 3, false)
+    );
+
+    geometry.setAttribute(
+      "color",
+      new Float32BufferAttribute(colors, 3, false)
     );
 
     geometry.setIndex(indices);
@@ -98,8 +98,8 @@
   {...meshProps}
   let:ref={meshObject}
   bind:ref={mesh}
-  scale={depth}
+  scale={attributes.depth}
 >
-  <T.MeshStandardMaterial color="#333" bind:ref={material} />
+  <T.MeshStandardMaterial bind:ref={material} vertexColors />
   <InteractiveObject object={meshObject} interactive />
 </T.Mesh>

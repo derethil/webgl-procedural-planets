@@ -3,7 +3,7 @@
   import { Hexsphere } from "../lib/Hexsphere";
   import { OrbitControls } from "@threlte/core";
   import Tile from "./components/Tile.svelte";
-  import { planetParams } from "../lib/stores/planetParams";
+  import { planetParams } from "../stores/planetParams";
 
   $: hexsphere = new Hexsphere(
     $planetParams.radius,

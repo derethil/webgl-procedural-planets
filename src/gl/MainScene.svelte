@@ -3,13 +3,22 @@
   import { Hexsphere } from "../lib/Hexsphere";
   import { OrbitControls } from "@threlte/core";
   import Tile from "./components/Tile.svelte";
+  import { planetParams } from "../lib/stores/planetParams";
 
-  const hexsphere = new Hexsphere(1, 10, 1);
+  $: hexsphere = new Hexsphere(
+    $planetParams.radius,
+    $planetParams.divisions,
+    $planetParams.tileSize
+  );
+
+  $: console.log($planetParams.noise.frequency);
+
+  const cameraDistance = 256;
 </script>
 
 <div class="h-full w-full">
   <Canvas>
-    <T.PerspectiveCamera makeDefault position={[10, 10, 10]} fov={24}>
+    <T.PerspectiveCamera makeDefault position={[cameraDistance, 0, 0]} fov={24}>
       <OrbitControls enableZoom={true} target={{ y: 0.5 }} />
     </T.PerspectiveCamera>
 
@@ -21,5 +30,7 @@
     {#each hexsphere.tiles as tile}
       <Tile baseTile={tile} />
     {/each}
+
+    <!-- <Tile baseTile={hexsphere.tiles[0]} /> -->
   </Canvas>
 </div>

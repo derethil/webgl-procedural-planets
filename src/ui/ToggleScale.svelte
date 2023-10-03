@@ -1,8 +1,9 @@
 <script lang="ts">
-  import { scaleDirection } from "../lib/stores";
+  import { scaleDirection, ScaleDirection } from "../lib/stores/scaleDirection";
+  import { planetParams } from "../lib/stores/planetParams";
 
   let checked = false;
-  $: $scaleDirection = checked ? "in" : "out";
+  $: $scaleDirection = checked ? ScaleDirection.IN : ScaleDirection.OUT;
 </script>
 
 <label for="scale" class="flex p-2">

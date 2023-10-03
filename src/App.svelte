@@ -1,5 +1,6 @@
 <script>
   import MainScene from "./gl/MainScene.svelte";
+  import PlanetConfigForm from "./ui/PlanetConfigForm.svelte";
   import ToggleScale from "./ui/ToggleScale.svelte";
 </script>
 
@@ -8,5 +9,5 @@
 </div>
 
 <div class="absolute top-0">
-  <ToggleScale />
+  <PlanetConfigForm />
 </div>

@@ -8,33 +8,42 @@
     MeshStandardMaterial,
   } from "three";
   import type { MeshProps } from "@threlte/core/dist/objects/Mesh.svelte";
-  import { spring } from "svelte/motion";
-  import { scaleDirection } from "../../lib/stores";
+  import { planetParams, noiseParams } from "../../lib/stores/planetParams";
+  import { getNoise } from "../../lib/noise/noise";
 
   // Props
-
   export let baseTile: Tile;
-  let depth = spring(2);
   export let meshProps: Omit<MeshProps, "geometry" | "material"> = {};
-  // State
-  $: vertices = computeVertices(baseTile);
-  $: geometry = computeGeometry(baseTile);
 
-  // Helpers
-  const computeVertices = (tile: Tile) => {
+  // State
+  $: depth = tileDepthFromNoise(baseTile);
+  $: vertices = tileVerticesFromDepth(baseTile);
+  $: geometry = tileGeometry(baseTile);
+
+  const tileVerticesFromDepth = (tile: Tile) => {
     return tile.boundary.flatMap((vertex) => [
       // Interior Vertices
       vertex.x,
       vertex.y,
       vertex.z,
       // Exterior Vertices
-      vertex.x * $depth,
-      vertex.y * $depth,
-      vertex.z * $depth,
+      vertex.x * depth,
+      vertex.y * depth,
+      vertex.z * depth,
     ]);
   };
 
-  const computeIndices = (tile: Tile): number[] => {
+  // Samples noise at the center of the tile to determine depth
+  const tileDepthFromNoise = (tile: Tile) => {
+    const position = tile.centerPoint;
+    const noise = getNoise($planetParams.seed, position, $noiseParams);
+    const depth = Math.max(noise, 0.22) + 1;
+    return depth;
+  };
+
+  // Calculate indices for tile geometry (triangles)
+  // Because we're using BufferGeometry, we need to specify the indices
+  const tileIndices = (tile: Tile): number[] => {
     const isHex = tile.boundary.length === 6;
     const numSideVertices = isHex ? 11 : 9;
     const indices: number[] = [];
@@ -54,8 +63,11 @@
     return indices;
   };
 
-  const computeGeometry = (tile: Tile) => {
-    const indices = computeIndices(tile);
+  // Calculate the geometry for a tile
+  // We use BufferGeometry here because the  tiles give us
+  // arrays of vertices, and BufferGeometry is more efficient
+  const tileGeometry = (tile: Tile) => {
+    const indices = tileIndices(tile);
     const geometry = new BufferGeometry();
 
     geometry.setAttribute(
@@ -69,7 +81,7 @@
     return geometry;
   };
 
-  // Three.js
+  // Three.js objects
   let material: MeshStandardMaterial;
   let mesh: Mesh;
   $: if (material) {
@@ -86,12 +98,8 @@
   {...meshProps}
   let:ref={meshObject}
   bind:ref={mesh}
-  scale={$depth}
+  scale={depth}
 >
   <T.MeshStandardMaterial color="#333" bind:ref={material} />
-  <InteractiveObject
-    object={meshObject}
-    interactive
-    on:pointerenter={() => ($depth = $scaleDirection === "in" ? 1.5 : 2.5)}
-  />
+  <InteractiveObject object={meshObject} interactive />
 </T.Mesh>

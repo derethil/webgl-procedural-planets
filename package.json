@@ -10,27 +10,26 @@
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
-    "@sveltejs/vite-plugin-svelte": "^2.0.3",
-    "@threlte/preprocess": "^0.0.2",
+    "@sveltejs/vite-plugin-svelte": "^2.4.6",
     "@tsconfig/svelte": "^4.0.1",
-    "@types/three": "^0.150.2",
+    "@types/three": "^0.156.0",
     "autoprefixer": "^10.4.14",
     "daisyui": "^2.51.5",
     "postcss": "^8.4.23",
-    "svelte": "^3.57.0",
+    "svelte": "^4.2.1",
     "svelte-check": "^2.10.3",
     "svelte-sequential-preprocessor": "^1.0.0",
     "tailwindcss": "^3.3.1",
     "tslib": "^2.5.0",
-    "typescript": "^5.0.2",
-    "vite": "^4.3.0"
+    "typescript": "^5.2.2",
+    "vite": "^4.4.10"
   },
   "dependencies": {
-    "@threlte/core": "^5.0.9",
-    "@threlte/extras": "^4.9.3",
+    "@threlte/core": "^6.0.10",
+    "@threlte/extras": "^7.0.0",
     "alea": "^1.0.1",
     "simplex-noise": "^4.0.1",
-    "three": "^0.151.3",
+    "three": "^0.157.0",
     "ts-pattern": "^5.0.5"
   }
 }

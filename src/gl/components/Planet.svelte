@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { mergeBufferGeometries } from "three/examples/jsm/utils/BufferGeometryUtils";
+  import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils";
   import { tileAttributes } from "../../features/tiles/attributes";
   import { tileGeometry } from "../../features/tiles/geometry";
   import { Hexsphere } from "../../lib/Hexsphere";
@@ -19,20 +19,9 @@
     return geometry;
   });
 
-  $: planetGeometry = mergeBufferGeometries(tileGeometries);
-
-  // Imperative Three.js code
-  let material: MeshStandardMaterial;
-  let mesh: Mesh;
-  $: if (material) {
-    material.flatShading = true;
-  }
-  $: if (mesh) {
-    mesh.castShadow = true;
-    mesh.receiveShadow = true;
-  }
+  $: planetGeometry = mergeGeometries(tileGeometries);
 </script>
 
-<T.Mesh geometry={planetGeometry} bind:ref={mesh} castShadow receiveShadow>
-  <T.MeshStandardMaterial bind:ref={material} vertexColors />
+<T.Mesh geometry={planetGeometry} castShadow receiveShadow>
+  <T.MeshStandardMaterial vertexColors flatShading />
 </T.Mesh>

@@ -1,20 +1,18 @@
 <script lang="ts">
   import { makeSeed } from "../util/seeds";
   import { planetParams } from "../stores/planetParams";
-  import ToggleScale from "./ToggleScale.svelte";
 
   function regenerate() {
     $planetParams.seed = makeSeed(20);
   }
 </script>
 
-<ToggleScale />
 <btn
-  class="btn btn-ghost btn-outline btn-sm"
+  class="btn btn-ghost btn-outline btn-sm m-4"
   on:click={regenerate}
   on:keyup={regenerate}
   role="button"
   tabindex="0"
 >
-  Regenerate
+  Generate new planet
 </btn>

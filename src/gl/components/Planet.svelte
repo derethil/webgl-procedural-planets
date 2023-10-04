@@ -5,7 +5,8 @@
   import { Hexsphere } from "../../lib/Hexsphere";
   import { planetParams } from "../../stores/planetParams";
   import { T } from "@threlte/core";
-  import type { Mesh, MeshStandardMaterial } from "three";
+  import { DoubleSide, type Mesh } from "three";
+  import { Edges } from "@threlte/extras";
 
   $: hexsphere = new Hexsphere(
     $planetParams.radius,
@@ -23,5 +24,5 @@
 </script>
 
 <T.Mesh geometry={planetGeometry} castShadow receiveShadow>
-  <T.MeshStandardMaterial vertexColors flatShading />
+  <T.MeshPhongMaterial vertexColors flatShading side={DoubleSide} />
 </T.Mesh>

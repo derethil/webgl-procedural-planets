@@ -1,11 +1,13 @@
 <script lang="ts">
+  import { Canvas } from "@threlte/core";
   import MainScene from "./gl/MainScene.svelte";
   import PlanetConfigForm from "./ui/PlanetConfigForm.svelte";
-  import ToggleScale from "./ui/ToggleScale.svelte";
 </script>
 
 <div class="h-screen">
-  <MainScene />
+  <Canvas>
+    <MainScene />
+  </Canvas>
 </div>
 
 <div class="absolute top-0">

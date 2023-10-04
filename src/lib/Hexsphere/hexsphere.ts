@@ -13,7 +13,7 @@ export class Hexsphere {
   constructor(radius: number, numDivisions: number, hexSize: number) {
     this.radius = radius;
 
-    let corners = [
+    const corners = [
       new Point(1000, tao * 1000, 0),
       new Point(-1000, tao * 1000, 0),
       new Point(1000, -tao * 1000, 0),
@@ -58,7 +58,7 @@ export class Hexsphere {
       new Face(corners[9], corners[1], corners[11], false),
     ];
 
-    let getPointIfExists = function (point: Point) {
+    const getPointIfExists = (point: Point) => {
       // @ts-ignore
       if (points[point]) {
         // console.log("EXISTING!");
@@ -72,7 +72,7 @@ export class Hexsphere {
       }
     };
 
-    let newFaces = [];
+    const newFaces = [];
 
     for (let f = 0; f < faces.length; f++) {
       // console.log("-0---");
@@ -105,7 +105,7 @@ export class Hexsphere {
 
     faces = newFaces;
 
-    let newPoints: any = {};
+    const newPoints: any = {};
     for (let p in points) {
       let np = points[p].project(radius);
       newPoints[np] = np;
@@ -118,34 +118,34 @@ export class Hexsphere {
 
     // create tiles and store in a lookup for references
     for (let p in points) {
-      let newTile = new Tile(points[p], hexSize);
+      const newTile = new Tile(points[p], hexSize);
       this.tiles.push(newTile);
       this.tileLookup[newTile.toString()] = newTile;
     }
 
     // resolve neighbor references now that all have been created
     for (let t in this.tiles) {
-      let _this = this;
+      const _this = this;
       this.tiles[t].neighbors = this.tiles[t].neighborIds.map(function (item) {
         return _this.tileLookup[item];
       });
     }
   }
 
-  toJson = function (this: Hexsphere) {
+  toJson(this: Hexsphere) {
     return JSON.stringify({
       radius: this.radius,
       tiles: this.tiles.map(function (tile) {
         return tile.toJson();
       }),
     });
-  };
+  }
 
-  toObj = function (this: Hexsphere) {
-    let objV = [];
-    let objF = [];
+  toObj(this: Hexsphere) {
+    const objV = [];
+    const objF = [];
     let objText = "# vertices \n";
-    let vertexIndexMap = {};
+    const vertexIndexMap = {};
 
     for (let i = 0; i < this.tiles.length; i++) {
       let t = this.tiles[i];
@@ -180,5 +180,5 @@ export class Hexsphere {
     }
 
     return objText;
-  };
+  }
 }

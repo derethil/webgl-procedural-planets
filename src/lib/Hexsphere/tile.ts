@@ -58,9 +58,7 @@ export class Tile {
   boundary: Point[];
 
   constructor(centerPoint: Point, hexSize?: number) {
-    if (hexSize === undefined) {
-      hexSize = 1;
-    }
+    if (hexSize === undefined) hexSize = 1;
 
     this.centerPoint = centerPoint;
     this.faces = centerPoint.getOrderedFaces();
@@ -70,7 +68,7 @@ export class Tile {
 
     hexSize = Math.max(0.01, Math.min(1.0, hexSize));
 
-    let neighborHash = {};
+    const neighborHash = {};
     for (let f = 0; f < this.faces.length; f++) {
       // build boundary
       this.boundary.push(
@@ -102,7 +100,7 @@ export class Tile {
     }
   }
 
-  getLatLon = function (this: Tile, radius: number, boundaryNum?: number) {
+  getLatLon(this: Tile, radius: number, boundaryNum?: number) {
     let point = this.centerPoint;
     if (typeof boundaryNum === "number" && boundaryNum < this.boundary.length) {
       point = this.boundary[boundaryNum];
@@ -117,9 +115,9 @@ export class Tile {
       latitude: (180 * phi) / Math.PI - 90,
       longitude: (180 * theta) / Math.PI,
     };
-  };
+  }
 
-  scaledBoundary = function (this: Tile, scale: number) {
+  scaledBoundary(this: Tile, scale: number) {
     scale = Math.max(0, Math.min(1, scale));
 
     let ret = [];
@@ -128,9 +126,9 @@ export class Tile {
     }
 
     return ret;
-  };
+  }
 
-  toJson = function (this: Tile) {
+  toJson(this: Tile) {
     // this.centerPoint = centerPoint;
     // this.faces = centerPoint.getOrderedFaces();
     // this.boundary = [];
@@ -140,13 +138,13 @@ export class Tile {
         return point.toJson();
       }),
     };
-  };
+  }
 
-  toString = function (this: Tile) {
+  toString(this: Tile) {
     return this.centerPoint.toString();
-  };
+  }
 
-  checkExists = function (this: Tile, keys: TileKeys, methodName?: string) {
+  checkExists(this: Tile, keys: TileKeys, methodName?: string) {
     const checkKey = (key: keyof Tile) => {
       if (!this[key]) {
         throw new Error(
@@ -160,5 +158,5 @@ export class Tile {
     } else {
       keys.forEach((key) => checkKey(key));
     }
-  };
+  }
 }

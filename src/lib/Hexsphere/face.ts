@@ -22,7 +22,7 @@ export class Face {
     }
   }
 
-  getOtherPoints = function (this: Face, point1: Point) {
+  getOtherPoints(this: Face, point1: Point) {
     let other = [];
     for (let i = 0; i < this.points.length; i++) {
       if (this.points[i].toString() !== point1.toString()) {
@@ -30,9 +30,9 @@ export class Face {
       }
     }
     return other;
-  };
+  }
 
-  findThirdPoint = function (this: Face, point1: Point, point2: Point) {
+  findThirdPoint(this: Face, point1: Point, point2: Point) {
     for (let i = 0; i < this.points.length; i++) {
       if (
         this.points[i].toString() !== point1.toString() &&
@@ -41,9 +41,9 @@ export class Face {
         return this.points[i];
       }
     }
-  };
+  }
 
-  isAdjacentTo = function (this: Face, face2: Face) {
+  isAdjacentTo(this: Face, face2: Face) {
     // adjacent if 2 of the points are the same
 
     let count = 0;
@@ -56,12 +56,10 @@ export class Face {
     }
 
     return count === 2;
-  };
+  }
 
-  getCentroid = function (this: Face, clear: boolean = false) {
-    if (this.centroid && !clear) {
-      return this.centroid;
-    }
+  getCentroid(this: Face, clear: boolean = false) {
+    if (this.centroid && !clear) return this.centroid;
 
     let x = (this.points[0].x + this.points[1].x + this.points[2].x) / 3;
     let y = (this.points[0].y + this.points[1].y + this.points[2].y) / 3;
@@ -72,5 +70,5 @@ export class Face {
     this.centroid = centroid;
 
     return centroid;
-  };
+  }
 }

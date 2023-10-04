@@ -20,13 +20,13 @@ export class Point {
     this.faces = [];
   }
 
-  subdivide = function (
+  subdivide(
     this: Point,
     point: Point,
     count: number,
     checkPoint: (point: Point) => Point
   ) {
-    let segments = [];
+    const segments = [];
     segments.push(this);
 
     for (let i = 1; i < count; i++) {
@@ -42,27 +42,24 @@ export class Point {
     segments.push(point);
 
     return segments;
-  };
+  }
 
-  segment = function (this: Point, point: Point, percent: number) {
+  segment(this: Point, point: Point, percent: number) {
     percent = Math.max(0.01, Math.min(1, percent));
 
     let x = point.x * (1 - percent) + this.x * percent;
     let y = point.y * (1 - percent) + this.y * percent;
     let z = point.z * (1 - percent) + this.z * percent;
 
-    let newPoint = new Point(x, y, z);
-    return newPoint;
-  };
+    return new Point(x, y, z);
+  }
 
-  midpoint = function (this: Point, point: Point) {
+  midpoint(this: Point, point: Point) {
     return this.segment(point, 0.5);
-  };
+  }
 
-  project = function (this: Point, radius: number, percent: number) {
-    if (percent === undefined) {
-      percent = 1.0;
-    }
+  project(this: Point, radius: number, percent: number) {
+    if (percent === undefined) percent = 1.0;
 
     percent = Math.max(0, Math.min(1, percent));
 
@@ -75,15 +72,15 @@ export class Point {
     this.y = this.y * ratio * percent;
     this.z = this.z * ratio * percent;
     return this;
-  };
+  }
 
-  registerFace = function (this: Point, face: Face) {
+  registerFace(this: Point, face: Face) {
     this.faces.push(face);
-  };
+  }
 
-  getOrderedFaces = function (this: Point) {
-    let workingArray = this.faces.slice();
-    let ret = [];
+  getOrderedFaces(this: Point) {
+    const workingArray = this.faces.slice();
+    const ret = [];
 
     let i = 0;
     while (i < this.faces.length) {
@@ -106,9 +103,9 @@ export class Point {
     }
 
     return ret;
-  };
+  }
 
-  findCommonFace = function (this: Point, other: Point, notThisFace: Face) {
+  findCommonFace(this: Point, other: Point, notThisFace: Face) {
     for (let i = 0; i < this.faces.length; i++) {
       for (let j = 0; j < other.faces.length; j++) {
         if (
@@ -121,17 +118,17 @@ export class Point {
     }
 
     return null;
-  };
+  }
 
-  toJson = function (this: Point) {
+  toJson(this: Point) {
     return {
       x: this.x,
       y: this.y,
       z: this.z,
     };
-  };
+  }
 
-  toString = function (this: Point) {
+  toString(this: Point) {
     return "" + this.x + "," + this.y + "," + this.z;
-  };
+  }
 }

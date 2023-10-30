@@ -27,8 +27,8 @@
   castShadow
   position={[0, 0, 32]}
   color="#fcd29f"
-  intensity={3}
-  shadow.mapSize={[2048, 2048]}
+  intensity={1.5}
+  shadow.mapSize={[32, 32]}
   shadow.camera.far={64}
   shadow.camera.near={0.1}
   shadow.camera.left={-32}
@@ -41,7 +41,7 @@
     <T.CameraHelper args={[ref.shadow.camera]} />
   </Portal>
 </T.DirectionalLight>
-<T.AmbientLight intensity={0.3} color="#718991" />
+<T.AmbientLight intensity={0.05} />
 
 <Planet />
 

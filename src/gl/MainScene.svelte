@@ -5,8 +5,10 @@
   import Planet from "./components/Planet.svelte";
   import Sun from "./components/Sun.svelte";
   import { useThrelteConfig } from "../features/threlteConfig";
+  import { injectLookAtPlugin } from "./plugins/lookAt";
 
   useThrelteConfig();
+  injectLookAtPlugin();
 </script>
 
 <T.PerspectiveCamera

@@ -5,6 +5,7 @@
   import { Hexsphere } from "../../lib/Hexsphere";
   import { planetParams } from "../../stores/planetParams";
   import { T } from "@threlte/core";
+  import { TransformControls } from "@threlte/extras";
 
   $: hexsphere = new Hexsphere(
     $planetParams.radius,

@@ -3,6 +3,7 @@
   import { OrbitControls } from "@threlte/extras";
 
   import Planet from "./components/Planet.svelte";
+  import Sun from "./components/Sun.svelte";
   import { useThrelteConfig } from "../features/threlteConfig";
 
   useThrelteConfig();
@@ -17,20 +18,8 @@
   <OrbitControls enablePan={false} enableDamping />
 </T.PerspectiveCamera>
 
-<T.DirectionalLight
-  castShadow
-  position={[0, 0, 32]}
-  color="#fcd29f"
-  intensity={1.5}
-  shadow.mapSize={[32, 32]}
-  shadow.camera.far={64}
-  shadow.camera.near={0.1}
-  shadow.camera.left={-32}
-  shadow.camera.right={32}
-  shadow.camera.top={32}
-  shadow.camera.bottom={-32}
-  let:ref
-/>
 <T.AmbientLight intensity={0.05} />
+
+<Sun />
 
 <Planet />

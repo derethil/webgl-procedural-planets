@@ -9,25 +9,25 @@
 </script>
 
 <div class="m-4">
-  <btn
-    class="btn btn-ghost btn-outline btn-sm"
-    on:click={regenerate}
-    on:keyup={regenerate}
-    role="button"
-    tabindex="0"
-  >
-    Generate new planet
-  </btn>
-
-  <div class="">
-    <label class="label cursor-pointer">
-      <span class="label-text">Autorotate</span>
-      <input
-        type="checkbox"
-        class="toggle toggle-success"
-        checked={$sceneParams.autorotate}
-        on:click={() => ($sceneParams.autorotate = !$sceneParams.autorotate)}
-      />
-    </label>
+  <div class="px-1 py-2">
+    <btn
+      class="btn btn-ghost btn-outline btn-sm"
+      on:click={regenerate}
+      on:keyup={regenerate}
+      role="button"
+      tabindex="0"
+    >
+      Generate new planet
+    </btn>
   </div>
+
+  <label class="label cursor-pointer">
+    <span class="label-text">Autorotate</span>
+    <input
+      type="checkbox"
+      class="toggle toggle-success"
+      checked={$sceneParams.autorotate}
+      on:click={() => ($sceneParams.autorotate = !$sceneParams.autorotate)}
+    />
+  </label>
 </div>

@@ -1,30 +1,20 @@
-# Vite + Svelte + Threlte + Tailwind
+# WebGL Planets
 
-This template should help get you started developing with Threlte in Vite.
+A simple WebGL project to render hexagonally tiled planets in the browser with procedurally generation. You can view the live demo [here](https://webgl-procedural-planets.vercel.app/).
 
-## Getting Started
+## Tools Used
 
-These instructions will get you a copy of the boilerplate up and running on your local machine for development and testing purposes.
+- [Svelte](https://svelte.dev/)
+- [Three.js](https://threejs.org/)
+- [Threlte](https://threlte.xyz/)
+- [TailwindCSS](https://tailwindcss.com/)
 
-### Prerequisites 
+## Running Locally
 
-- `yarn`
-- `node`
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Install dependencies
-
-```
-$ yarn install
+```bash
+git clone
+cd webgl-procedural-planets
+yarn install
 ```
 
-### Running
-
-Run the development server with
-
-```
-$ yarn dev
-```
+Then run `yarn dev` to start the development server.

@@ -4,7 +4,7 @@ import * as Three from "three";
 export function useThrelteConfig() {
   const { renderer, scene } = useThrelte();
 
-  scene.background = new Three.Color(0x101010);
+  scene.background = new Three.Color(0x0a0a0a);
 
   renderer.toneMapping = Three.ACESFilmicToneMapping;
   renderer.outputColorSpace = Three.SRGBColorSpace;

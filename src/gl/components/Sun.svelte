@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { T, useFrame } from "@threlte/core";
+  import { T, useTask } from "@threlte/core";
   import { DoubleSide, Vector3 } from "three";
   import { useTexture } from "@threlte/extras";
   import StarTexture from "../../assets/textures/star.png";
@@ -23,7 +23,7 @@
     position = position.set(x, 0, z);
   };
 
-  useFrame((_, delta) => rotateLightOneStep(delta));
+  useTask((delta) => rotateLightOneStep(delta));
 </script>
 
 <T.DirectionalLight

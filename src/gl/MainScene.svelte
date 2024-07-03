@@ -19,8 +19,8 @@
   fov={24}
 >
   <OrbitControls
-    enablePan={false}
-    enableZoom={false}
+    enablePan={true}
+    enableZoom={true}
     enableDamping
     autoRotate
     autoRotateSpeed={$sceneParams.autorotate ? 0.5 : 0}

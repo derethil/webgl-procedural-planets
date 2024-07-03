@@ -28,9 +28,10 @@
 
 <T.DirectionalLight
   color="#fcd29f"
+  castShadow
   position={position.toArray()}
   intensity={1.5}
-  shadow.mapSize={[32, 32]}
+  shadow.mapSize={[4096, 4096]}
   shadow.camera.far={64}
   shadow.camera.near={0.1}
   shadow.camera.left={-32}

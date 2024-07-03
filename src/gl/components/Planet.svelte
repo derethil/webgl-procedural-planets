@@ -1,16 +1,15 @@
 <script lang="ts">
-  import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils";
+  import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js";
   import { tileAttributes } from "../../features/tiles/attributes";
   import { tileGeometry } from "../../features/tiles/geometry";
   import { Hexsphere } from "../../lib/Hexsphere";
   import { planetParams } from "../../stores/planetParams";
   import { T } from "@threlte/core";
-  import { TransformControls } from "@threlte/extras";
 
   $: hexsphere = new Hexsphere(
     $planetParams.radius,
     $planetParams.divisions,
-    $planetParams.tileSize
+    $planetParams.tileSize,
   );
 
   $: tileGeometries = hexsphere.tiles.map((tile) => {

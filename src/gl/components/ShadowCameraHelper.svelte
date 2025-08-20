@@ -5,7 +5,11 @@
 
   const { scene } = useThrelte();
 
-  export let ref: DirectionalLight;
+  interface Props {
+    ref: DirectionalLight;
+  }
+
+  let { ref }: Props = $props();
 </script>
 
 <Portal object={scene}>

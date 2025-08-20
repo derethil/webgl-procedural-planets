@@ -6,19 +6,19 @@
   import { planetParams } from "../../stores/planetParams";
   import { T } from "@threlte/core";
 
-  $: hexsphere = new Hexsphere(
+  let hexsphere = $derived(new Hexsphere(
     $planetParams.radius,
     $planetParams.divisions,
     $planetParams.tileSize,
-  );
+  ));
 
-  $: tileGeometries = hexsphere.tiles.map((tile) => {
+  let tileGeometries = $derived(hexsphere.tiles.map((tile) => {
     const attributes = tileAttributes(tile);
     const geometry = tileGeometry(tile, attributes);
     return geometry;
-  });
+  }));
 
-  $: planetGeometry = mergeGeometries(tileGeometries);
+  let planetGeometry = $derived(mergeGeometries(tileGeometries));
 </script>
 
 <T.Mesh geometry={planetGeometry} castShadow receiveShadow>

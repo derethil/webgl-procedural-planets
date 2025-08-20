@@ -9,7 +9,7 @@
   const degreesPerSecond = 2.25;
   const radius = 32;
 
-  let position = new Vector3(0, 0, radius);
+  let position = $state(new Vector3(0, 0, radius));
 
   const rotateLightOneStep = (delta: number) => {
     const radiansPerSecond = (degreesPerSecond * Math.PI) / 180;

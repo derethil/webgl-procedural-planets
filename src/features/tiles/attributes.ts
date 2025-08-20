@@ -1,5 +1,5 @@
 import type { Tile } from "../../lib/Hexsphere";
-import { planetParams as planetParamsStore } from "../../stores/planetParams";
+import { planetParams as planetParamsStore, type PlanetParams, type NoiseParams } from "../../stores/planetParams";
 import { noiseParams } from "../../stores/noiseParams";
 import { get } from "svelte/store";
 import type { TileAttributes } from "../../lib/dto/tileAttributes";
@@ -7,17 +7,14 @@ import { getNoise } from "../noise";
 import { P, match } from "ts-pattern";
 import { Biomes } from "../../util/biomes";
 
-const $planetParams = get(planetParamsStore);
-const $noiseParams = get(noiseParams);
-
 const MINIMUM_DEPTH = 1.22;
 
 // A tile may have attributes that are derived from its position
 // on the planet.
 
-function tileDepth(tile: Tile) {
+function tileDepth(tile: Tile, planetParams: PlanetParams, noiseParams: NoiseParams) {
   const position = tile.centerPoint;
-  const noise = getNoise($planetParams.seed, position, $noiseParams);
+  const noise = getNoise(planetParams.seed, position, noiseParams);
   const depth = Math.max(noise + 1, MINIMUM_DEPTH);
   return Math.round(depth * 100) / 100;
 }
@@ -32,7 +29,9 @@ function tileBiome(depth: number) {
 }
 
 export function tileAttributes(tile: Tile): TileAttributes {
-  const depth = tileDepth(tile);
+  const $planetParams = get(planetParamsStore);
+  const $noiseParams = get(noiseParams);
+  const depth = tileDepth(tile, $planetParams, $noiseParams);
   const biome = tileBiome(depth);
   return { depth, biome };
 }

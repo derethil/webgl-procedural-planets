@@ -10,6 +10,6 @@
   </Canvas>
 </div>
 
-<div class="absolute top-0">
+<div class="absolute top-0 z-10">
   <PlanetConfigForm />
 </div>

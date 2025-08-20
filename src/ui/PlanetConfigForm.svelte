@@ -10,15 +10,13 @@
 
 <div class="m-4">
   <div class="px-1 py-2">
-    <btn
+    <button
       class="btn btn-ghost btn-outline btn-sm"
-      on:click={regenerate}
-      on:keyup={regenerate}
-      role="button"
-      tabindex="0"
+      onclick={regenerate}
+      onkeyup={regenerate}
     >
       Generate new planet
-    </btn>
+    </button>
   </div>
 
   <label class="label cursor-pointer">
@@ -27,7 +25,7 @@
       type="checkbox"
       class="toggle toggle-success"
       checked={$sceneParams.autorotate}
-      on:click={() => ($sceneParams.autorotate = !$sceneParams.autorotate)}
+      onclick={() => ($sceneParams.autorotate = !$sceneParams.autorotate)}
     />
   </label>
 </div>

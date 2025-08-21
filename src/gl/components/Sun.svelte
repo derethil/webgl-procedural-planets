@@ -20,10 +20,11 @@
     const x = radius * Math.sin(radians);
     const z = radius * Math.cos(radians);
 
-    position = position.set(x, 0, z);
+    position = new Vector3(x, 0, z);
   };
 
-  useTask((delta) => rotateLightOneStep(delta));
+  const task = useTask((delta) => rotateLightOneStep(delta));
+  task.start();
 </script>
 
 <T.DirectionalLight
@@ -41,7 +42,7 @@
 />
 
 {#await sunTexture then texture}
-  <T.Mesh position={position.multiplyScalar(10).toArray()} lookAt={[0, 0, 0]}>
+  <T.Mesh position={position.clone().multiplyScalar(10).toArray()} lookAt={[0, 0, 0]}>
     <T.PlaneGeometry args={[24, 24]} />
     <T.MeshBasicMaterial side={DoubleSide} map={texture} transparent />
   </T.Mesh>

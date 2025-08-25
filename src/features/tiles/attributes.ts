@@ -1,12 +1,12 @@
 import { get } from "svelte/store";
-import { P, match } from "ts-pattern";
+import { match,P } from "ts-pattern";
 import type { TileAttributes } from "@/lib/dto/tileAttributes";
 import type { Tile } from "@/lib/Hexsphere";
 import { noiseParams } from "@/stores/noiseParams";
 import {
-  planetParams as planetParamsStore,
   type NoiseParams,
   type PlanetParams,
+  planetParams as planetParamsStore,
 } from "@/stores/planetParams";
 import { BiomeColors, Biomes } from "@/util/biomes";
 import { getNoise } from "../noise";

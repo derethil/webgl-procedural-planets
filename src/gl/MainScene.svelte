@@ -1,11 +1,10 @@
 <script lang="ts">
   import { T } from "@threlte/core";
-  import { OrbitControls, PerfMonitor, Stars } from "@threlte/extras";
-
-  import Planet from "./components/Planet.svelte";
-  import Sun from "./components/Sun.svelte";
+  import { OrbitControls, Stars } from "@threlte/extras";
   import { useThrelteConfig } from "@/features/threlteConfig";
   import { sceneParams } from "@/stores/sceneParams";
+  import Planet from "./components/Planet.svelte";
+  import Sun from "./components/Sun.svelte";
   import { injectLookAtPlugin } from "./plugins/lookAt";
 
   useThrelteConfig();

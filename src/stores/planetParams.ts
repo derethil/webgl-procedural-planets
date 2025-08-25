@@ -1,4 +1,4 @@
-import { derived, writable } from "svelte/store";
+import { writable } from "svelte/store";
 
 export interface PlanetParams {
   seed: string;
@@ -22,7 +22,7 @@ const DEFAULT_PARAMS: PlanetParams = {
   tileSize: 1,
   noise: {
     frequency: 0.048,
-    iterations: 8,
+    iterations: 16,
     persistence: 0.5,
     noiseRadius: 15,
   },

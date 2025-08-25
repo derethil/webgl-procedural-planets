@@ -1,4 +1,4 @@
-import { type ColorArray, hexToRGBFloatArray } from "@/gl/util";
+import { type ColorArray, hexToColorArray } from "@/gl/util";
 
 export interface Biome {
   color: ColorArray;
@@ -16,12 +16,12 @@ export enum Biomes {
 }
 
 export const BiomeColors: Record<Biomes, Biome> = {
-  [Biomes.Ocean]: { color: hexToRGBFloatArray("#4287f5") },
-  [Biomes.BarrenFlat]: { color: hexToRGBFloatArray("#8b7355") },
-  [Biomes.BarrenHill]: { color: hexToRGBFloatArray("#9d8566") },
-  [Biomes.BarrenMountain]: { color: hexToRGBFloatArray("#6b5d45") },
-  [Biomes.Sand]: { color: hexToRGBFloatArray("#feffae") },
-  [Biomes.Grass]: { color: hexToRGBFloatArray("#31703a") },
-  [Biomes.Stone]: { color: hexToRGBFloatArray("#83819c") },
-  [Biomes.Snow]: { color: hexToRGBFloatArray("#ffffff") },
+  [Biomes.Ocean]: { color: hexToColorArray("#4287f5") },
+  [Biomes.BarrenFlat]: { color: hexToColorArray("#8b7355") },
+  [Biomes.BarrenHill]: { color: hexToColorArray("#9d8566") },
+  [Biomes.BarrenMountain]: { color: hexToColorArray("#6b5d45") },
+  [Biomes.Sand]: { color: hexToColorArray("#feffae") },
+  [Biomes.Grass]: { color: hexToColorArray("#31703a") },
+  [Biomes.Stone]: { color: hexToColorArray("#83819c") },
+  [Biomes.Snow]: { color: hexToColorArray("#ffffff") },
 };

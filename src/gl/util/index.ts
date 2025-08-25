@@ -1,5 +1,5 @@
 import type { ColorArray } from "./colors";
-import { hexToRGBFloatArray } from "./colors";
+import { hexToColorArray } from "./colors";
 
-export { hexToRGBFloatArray };
 export type { ColorArray };
+export { hexToColorArray };

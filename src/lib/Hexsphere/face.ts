@@ -7,7 +7,12 @@ export class Face {
   points: Point[];
   centroid?: Point;
 
-  constructor(point1: Point, point2: Point, point3: Point, register?: boolean) {
+  public constructor(
+    point1: Point,
+    point2: Point,
+    point3: Point,
+    register?: boolean,
+  ) {
     this.id = _faceCount++;
 
     if (register === undefined) {
@@ -22,8 +27,8 @@ export class Face {
     }
   }
 
-  getOtherPoints(this: Face, point1: Point) {
-    let other = [];
+  public getOtherPoints(this: Face, point1: Point) {
+    const other = [];
     for (let i = 0; i < this.points.length; i++) {
       if (this.points[i].toString() !== point1.toString()) {
         other.push(this.points[i]);
@@ -32,7 +37,7 @@ export class Face {
     return other;
   }
 
-  findThirdPoint(this: Face, point1: Point, point2: Point) {
+  public findThirdPoint(this: Face, point1: Point, point2: Point) {
     for (let i = 0; i < this.points.length; i++) {
       if (
         this.points[i].toString() !== point1.toString() &&
@@ -43,7 +48,7 @@ export class Face {
     }
   }
 
-  isAdjacentTo(this: Face, face2: Face) {
+  public isAdjacentTo(this: Face, face2: Face) {
     // adjacent if 2 of the points are the same
 
     let count = 0;
@@ -58,14 +63,14 @@ export class Face {
     return count === 2;
   }
 
-  getCentroid(this: Face, clear: boolean = false) {
+  public getCentroid(this: Face, clear: boolean = false) {
     if (this.centroid && !clear) return this.centroid;
 
-    let x = (this.points[0].x + this.points[1].x + this.points[2].x) / 3;
-    let y = (this.points[0].y + this.points[1].y + this.points[2].y) / 3;
-    let z = (this.points[0].z + this.points[1].z + this.points[2].z) / 3;
+    const x = (this.points[0].x + this.points[1].x + this.points[2].x) / 3;
+    const y = (this.points[0].y + this.points[1].y + this.points[2].y) / 3;
+    const z = (this.points[0].z + this.points[1].z + this.points[2].z) / 3;
 
-    let centroid = new Point(x, y, z);
+    const centroid = new Point(x, y, z);
 
     this.centroid = centroid;
 

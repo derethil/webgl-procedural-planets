@@ -6,7 +6,7 @@ export class Point {
   y: number;
   z: number;
 
-  constructor(x?: number, y?: number, z?: number) {
+  public constructor(x?: number, y?: number, z?: number) {
     if (x !== undefined && y !== undefined && z !== undefined) {
       this.x = Number(x.toFixed(3));
       this.y = Number(y.toFixed(3));
@@ -20,11 +20,11 @@ export class Point {
     this.faces = [];
   }
 
-  subdivide(
+  public subdivide(
     this: Point,
     point: Point,
     count: number,
-    checkPoint: (point: Point) => Point
+    checkPoint: (point: Point) => Point,
   ) {
     const segments = [];
     segments.push(this);
@@ -33,7 +33,7 @@ export class Point {
       let np = new Point(
         this.x * (1 - i / count) + point.x * (i / count),
         this.y * (1 - i / count) + point.y * (i / count),
-        this.z * (1 - i / count) + point.z * (i / count)
+        this.z * (1 - i / count) + point.z * (i / count),
       );
       np = checkPoint(np);
       segments.push(np);
@@ -44,29 +44,29 @@ export class Point {
     return segments;
   }
 
-  segment(this: Point, point: Point, percent: number) {
+  public segment(this: Point, point: Point, percent: number) {
     percent = Math.max(0.01, Math.min(1, percent));
 
-    let x = point.x * (1 - percent) + this.x * percent;
-    let y = point.y * (1 - percent) + this.y * percent;
-    let z = point.z * (1 - percent) + this.z * percent;
+    const x = point.x * (1 - percent) + this.x * percent;
+    const y = point.y * (1 - percent) + this.y * percent;
+    const z = point.z * (1 - percent) + this.z * percent;
 
     return new Point(x, y, z);
   }
 
-  midpoint(this: Point, point: Point) {
+  public midpoint(this: Point, point: Point) {
     return this.segment(point, 0.5);
   }
 
-  project(this: Point, radius: number, percent: number) {
+  public project(this: Point, radius: number, percent?: number) {
     if (percent === undefined) percent = 1.0;
 
     percent = Math.max(0, Math.min(1, percent));
 
-    let mag = Math.sqrt(
-      Math.pow(this.x, 2) + Math.pow(this.y, 2) + Math.pow(this.z, 2)
+    const mag = Math.sqrt(
+      Math.pow(this.x, 2) + Math.pow(this.y, 2) + Math.pow(this.z, 2),
     );
-    let ratio = radius / mag;
+    const ratio = radius / mag;
 
     this.x = this.x * ratio * percent;
     this.y = this.y * ratio * percent;
@@ -74,11 +74,11 @@ export class Point {
     return this;
   }
 
-  registerFace(this: Point, face: Face) {
+  public registerFace(this: Point, face: Face) {
     this.faces.push(face);
   }
 
-  getOrderedFaces(this: Point) {
+  public getOrderedFaces(this: Point) {
     const workingArray = this.faces.slice();
     const ret = [];
 
@@ -105,7 +105,7 @@ export class Point {
     return ret;
   }
 
-  findCommonFace(this: Point, other: Point, notThisFace: Face) {
+  public findCommonFace(this: Point, other: Point, notThisFace: Face) {
     for (let i = 0; i < this.faces.length; i++) {
       for (let j = 0; j < other.faces.length; j++) {
         if (
@@ -120,7 +120,7 @@ export class Point {
     return null;
   }
 
-  toJson(this: Point) {
+  public toJson(this: Point) {
     return {
       x: this.x,
       y: this.y,
@@ -128,7 +128,7 @@ export class Point {
     };
   }
 
-  toString(this: Point) {
+  public toString(this: Point) {
     return "" + this.x + "," + this.y + "," + this.z;
   }
 }

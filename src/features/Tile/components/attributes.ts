@@ -1,7 +1,7 @@
 import { get } from "svelte/store";
 import { Vector3 } from "three";
 import { match, P } from "ts-pattern";
-import { getNoise } from "@/features/noise";
+import { getNoise } from "@/features/Noise";
 import type { Tile } from "@/lib/Hexsphere";
 import { noiseParams } from "@/stores/noiseParams";
 import {

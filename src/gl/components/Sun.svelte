@@ -1,7 +1,7 @@
 <script lang="ts">
   import { T, useTask } from "@threlte/core";
-  import { DoubleSide, Vector3 } from "three";
   import { useTexture } from "@threlte/extras";
+  import { DoubleSide, Vector3 } from "three";
   import StarTexture from "@/assets/textures/star.png";
 
   const sunTexture = useTexture(StarTexture);

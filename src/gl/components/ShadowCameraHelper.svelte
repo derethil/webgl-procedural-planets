@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { useThrelte, T } from "@threlte/core";
+  import { T,useThrelte } from "@threlte/core";
   import { Portal } from "@threlte/extras";
   import { DirectionalLight } from "three";
 

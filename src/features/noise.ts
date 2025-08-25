@@ -7,15 +7,16 @@ import type { NoiseParams } from "@/stores/planetParams";
 export function getNoise(seed: string, position: Vector3, params: NoiseParams) {
   const noise3D = createNoise3D(Alea(seed));
 
-  let { iterations: numIterations, persistence, frequency } = params;
-  let { x, y, z } = position;
+  const { iterations, persistence } = params;
+  const { x, y, z } = position;
 
+  let frequency = params.frequency;
   let maxAmplitude = 0;
   let amplitude = 1;
   let noise = 0;
 
   // add successively smaller, higher-frequency terms
-  for (let i = 0; i < numIterations; ++i) {
+  for (let i = 0; i < iterations; ++i) {
     noise += noise3D(x * frequency, y * frequency, z * frequency) * amplitude;
     maxAmplitude += amplitude;
     amplitude *= persistence;

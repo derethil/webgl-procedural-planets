@@ -1,4 +1,4 @@
-import type { Biome } from "../../util/biomes";
+import type { Biome } from "@/util/biomes";
 
 interface TileAttributes {
   depth: number;

@@ -2,7 +2,7 @@
   import { T, useTask } from "@threlte/core";
   import { DoubleSide, Vector3 } from "three";
   import { useTexture } from "@threlte/extras";
-  import StarTexture from "../../assets/textures/star.png";
+  import StarTexture from "@/assets/textures/star.png";
 
   const sunTexture = useTexture(StarTexture);
 

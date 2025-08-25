@@ -1,11 +1,9 @@
 <script lang="ts">
+  import { makeSeed } from "@/features/Noise";
   import { planetParams } from "@/stores/planetParams";
   import { sceneParams } from "@/stores/sceneParams";
-  import { makeSeed } from "@/util/seeds";
 
-  function regenerate() {
-    $planetParams.seed = makeSeed(20);
-  }
+  const regenerate = () => $planetParams.seed = makeSeed(20);
 </script>
 
 <div class="m-4">

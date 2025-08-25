@@ -1,6 +1,7 @@
 import { get } from "svelte/store";
 import { Vector3 } from "three";
 import { match, P } from "ts-pattern";
+import { type Biome, BiomeColors, Biomes } from "@/features/Biomes";
 import { getNoise } from "@/features/Noise";
 import type { Tile } from "@/lib/Hexsphere";
 import { noiseParams } from "@/stores/noiseParams";
@@ -9,7 +10,6 @@ import {
   type PlanetParams,
   planetParams as planetParamsStore,
 } from "@/stores/planetParams";
-import { type Biome, BiomeColors, Biomes } from "@/util/biomes";
 
 const MINIMUM_DEPTH = 1;
 export const OCEAN_DEPTH = 1.22;

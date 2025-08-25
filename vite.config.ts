@@ -10,4 +10,9 @@ export default defineConfig({
   ssr: {
     noExternal: ["three", "troika-three-text"],
   },
+  resolve: {
+    alias: {
+      "@": "/src",
+    },
+  },
 });

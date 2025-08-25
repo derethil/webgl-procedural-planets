@@ -4,8 +4,8 @@
 
   import Planet from "./components/Planet.svelte";
   import Sun from "./components/Sun.svelte";
-  import { useThrelteConfig } from "../features/threlteConfig";
-  import { sceneParams } from "../stores/sceneParams";
+  import { useThrelteConfig } from "@/features/threlteConfig";
+  import { sceneParams } from "@/stores/sceneParams";
   import { injectLookAtPlugin } from "./plugins/lookAt";
 
   useThrelteConfig();

@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { makeSeed } from "../util/seeds";
-  import { planetParams } from "../stores/planetParams";
-  import { sceneParams } from "../stores/sceneParams";
+  import { makeSeed } from "@/util/seeds";
+  import { planetParams } from "@/stores/planetParams";
+  import { sceneParams } from "@/stores/sceneParams";
 
   function regenerate() {
     $planetParams.seed = makeSeed(20);

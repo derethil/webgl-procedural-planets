@@ -1,6 +1,6 @@
 import type { BufferGeometry } from "three";
 import type { Planet } from "@/features/Planet";
-import type { Tile as HexTile } from "@/lib/Hexsphere";
+import type { Tile as HexTile } from "hexasphere";
 import { createInitialAttributes, type TileAttributes } from "./attributes";
 import { createTileGeometry } from "./geometry";
 

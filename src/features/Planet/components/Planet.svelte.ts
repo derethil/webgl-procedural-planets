@@ -1,7 +1,7 @@
 import type { IntersectionEvent } from "@threlte/extras";
 import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js";
 import { Tile } from "@/features/Tile";
-import { Hexsphere } from "@/lib/Hexsphere";
+import { Hexasphere } from "hexasphere";
 import { planetParams } from "@/state/planetParams.svelte";
 
 export class Planet {
@@ -45,7 +45,7 @@ export class Planet {
   }
 
   private constructSphere() {
-    return new Hexsphere(
+    return new Hexasphere(
       planetParams.radius,
       planetParams.divisions,
       planetParams.tileSize,

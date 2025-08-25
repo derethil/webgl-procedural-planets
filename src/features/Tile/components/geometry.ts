@@ -1,5 +1,5 @@
 import { BufferGeometry, Float32BufferAttribute } from "three";
-import type { Tile } from "@/lib/Hexsphere";
+import type { Tile } from "hexasphere";
 import type { TileAttributes } from "./attributes";
 
 const tileVertices = (tile: Tile, attributes: TileAttributes) => {

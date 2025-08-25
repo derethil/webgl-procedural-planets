@@ -9,7 +9,7 @@ function hexToRGB(hex: string) {
   };
 }
 
-export function hexToRGBFloatArray(hex: string): ColorArray {
+export function hexToColorArray(hex: string): ColorArray {
   const rgb = hexToRGB(hex);
   return [rgb.r / 255, rgb.g / 255, rgb.b / 255];
 }

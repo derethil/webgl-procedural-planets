@@ -1,9 +1,9 @@
 import { Face } from "./face";
-import { Tile } from "./tile";
-import { Point } from "./point";
 import { Hexsphere } from "./hexsphere";
+import { Point } from "./point";
+import { Tile } from "./tile";
 
-export { Face, Tile, Point, Hexsphere };
+export { Face, Hexsphere,Point, Tile };
 
 // This Hexsphere folder is a port (and migration to newer Three versions)
 // of the original Hexsphere library written in JavaScript by Rob Scanlon.

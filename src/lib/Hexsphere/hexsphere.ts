@@ -1,6 +1,6 @@
 import { Face } from "./face";
-import { Tile } from "./tile";
 import { Point } from "./point";
+import { Tile } from "./tile";
 
 const tao = 1.61803399;
 
@@ -8,9 +8,9 @@ export class Hexsphere {
   radius: number;
   tiles: Tile[];
 
-  private tileLookup: any;
+  private tileLookup: Record<string, Tile>;
 
-  constructor(radius: number, numDivisions: number, hexSize: number) {
+  public constructor(radius: number, numDivisions: number, hexSize: number) {
     this.radius = radius;
 
     const corners = [
@@ -28,11 +28,10 @@ export class Hexsphere {
       new Point(-tao * 1000, 0, -1000),
     ];
 
-    let points: any = {};
+    let points: Record<string, Point> = {};
 
     for (let i = 0; i < corners.length; i++) {
-      // @ts-ignore
-      points[corners[i]] = corners[i];
+      points[corners[i].toString()] = corners[i];
     }
 
     let faces = [
@@ -59,15 +58,11 @@ export class Hexsphere {
     ];
 
     const getPointIfExists = (point: Point) => {
-      // @ts-ignore
-      if (points[point]) {
-        // console.log("EXISTING!");
-        // @ts-ignore
-        return points[point];
+      const pointKey = point.toString();
+      if (points[pointKey]) {
+        return points[pointKey];
       } else {
-        // console.log("NOT EXISTING!");
-        // @ts-ignore
-        points[point] = point;
+        points[pointKey] = point;
         return point;
       }
     };
@@ -75,18 +70,17 @@ export class Hexsphere {
     const newFaces = [];
 
     for (let f = 0; f < faces.length; f++) {
-      // console.log("-0---");
       let prev = null;
       let bottom = [faces[f].points[0]];
-      let left = faces[f].points[0].subdivide(
+      const left = faces[f].points[0].subdivide(
         faces[f].points[1],
         numDivisions,
-        getPointIfExists
+        getPointIfExists,
       );
-      let right = faces[f].points[0].subdivide(
+      const right = faces[f].points[0].subdivide(
         faces[f].points[2],
         numDivisions,
-        getPointIfExists
+        getPointIfExists,
       );
       for (let i = 1; i <= numDivisions; i++) {
         prev = bottom;
@@ -105,10 +99,11 @@ export class Hexsphere {
 
     faces = newFaces;
 
-    const newPoints: any = {};
-    for (let p in points) {
-      let np = points[p].project(radius);
-      newPoints[np] = np;
+    const newPoints: Record<string, Point> = {};
+
+    for (const p in points) {
+      const np = points[p].project(radius);
+      newPoints[np.toString()] = np;
     }
 
     points = newPoints;
@@ -117,22 +112,21 @@ export class Hexsphere {
     this.tileLookup = {};
 
     // create tiles and store in a lookup for references
-    for (let p in points) {
+    for (const p in points) {
       const newTile = new Tile(points[p], hexSize);
       this.tiles.push(newTile);
       this.tileLookup[newTile.toString()] = newTile;
     }
 
     // resolve neighbor references now that all have been created
-    for (let t in this.tiles) {
-      const _this = this;
-      this.tiles[t].neighbors = this.tiles[t].neighborIds.map(function (item) {
-        return _this.tileLookup[item];
+    for (const t in this.tiles) {
+      this.tiles[t].neighbors = this.tiles[t].neighborIds.map((item) => {
+        return this.tileLookup[item];
       });
     }
   }
 
-  toJson(this: Hexsphere) {
+  public toJson(this: Hexsphere) {
     return JSON.stringify({
       radius: this.radius,
       tiles: this.tiles.map(function (tile) {
@@ -141,24 +135,22 @@ export class Hexsphere {
     });
   }
 
-  toObj(this: Hexsphere) {
+  public toObj(this: Hexsphere) {
     const objV = [];
     const objF = [];
     let objText = "# vertices \n";
-    const vertexIndexMap = {};
+    const vertexIndexMap: Record<string, number> = {};
 
     for (let i = 0; i < this.tiles.length; i++) {
-      let t = this.tiles[i];
+      const t = this.tiles[i];
 
-      let F = [];
+      const F = [];
       for (let j = 0; j < t.boundary.length; j++) {
-        // @ts-ignore
-        let index = vertexIndexMap[t.boundary[j]];
+        let index = vertexIndexMap[t.boundary[j].toString()];
         if (index === undefined) {
           objV.push(t.boundary[j]);
           index = objV.length;
-          // @ts-ignore
-          vertexIndexMap[t.boundary[j]] = index;
+          vertexIndexMap[t.boundary[j].toString()] = index;
         }
         F.push(index);
       }

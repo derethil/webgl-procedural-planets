@@ -1,6 +1,6 @@
 import { BufferGeometry, Float32BufferAttribute } from "three";
-import type { TileAttributes } from "@/lib/dto/tileAttributes";
 import type { Tile } from "@/lib/Hexsphere";
+import type { TileAttributes } from "./types";
 
 const tileVertices = (tile: Tile, attributes: TileAttributes) => {
   return tile.boundary.flatMap((vertex) => [
@@ -40,7 +40,7 @@ const tileIndices = (tile: Tile): number[] => {
 // Calculate the geometry for a tile
 // We use BufferGeometry here because the  tiles give us
 // arrays of vertices, and BufferGeometry is more efficient
-export const tileGeometry = (tile: Tile, attributes: TileAttributes) => {
+export const createTileGeometry = (tile: Tile, attributes: TileAttributes) => {
   const vertices = tileVertices(tile, attributes);
   const indices = tileIndices(tile);
   const geometry = new BufferGeometry();
@@ -50,7 +50,7 @@ export const tileGeometry = (tile: Tile, attributes: TileAttributes) => {
 
   geometry.setAttribute(
     "position",
-    new Float32BufferAttribute(vertices, 3, false)
+    new Float32BufferAttribute(vertices, 3, false),
   );
 
   geometry.setAttribute("color", new Float32BufferAttribute(colors, 3, false));

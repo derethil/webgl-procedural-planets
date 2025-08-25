@@ -1,9 +1,9 @@
 <script lang="ts">
   import { makeSeed } from "@/features/Noise";
-  import { planetParams } from "@/stores/planetParams";
-  import { sceneParams } from "@/stores/sceneParams";
+  import { planetParams } from "@/state/planetParams.svelte";
+  import { sceneParams } from "@/state/sceneParams.svelte";
 
-  const regenerate = () => $planetParams.seed = makeSeed(20);
+  const regenerate = () => planetParams.seed = makeSeed(20);
 </script>
 
 <div class="m-4">
@@ -22,8 +22,8 @@
     <input
       type="checkbox"
       class="toggle toggle-success"
-      checked={$sceneParams.autorotate}
-      onclick={() => ($sceneParams.autorotate = !$sceneParams.autorotate)}
+      checked={sceneParams.autorotate}
+      onclick={() => (sceneParams.autorotate = !sceneParams.autorotate)}
     />
   </label>
 </div>

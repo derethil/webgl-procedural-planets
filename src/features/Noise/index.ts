@@ -1,7 +1,7 @@
 import Alea from "alea";
 import { createNoise3D } from "simplex-noise";
 import type { Vector3 } from "three";
-import type { NoiseParams } from "@/stores/planetParams";
+import type { NoiseParams } from "@/state/planetParams.svelte";
 
 // https://cmaher.github.io/posts/working-with-simplex-noise/
 export function getNoise(seed: string, position: Vector3, params: NoiseParams) {

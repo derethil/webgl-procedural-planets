@@ -1,15 +1,8 @@
 <script lang="ts">
   import { T } from "@threlte/core";
   import { Planet } from "@/features/Planet";
-  import { planetParams } from "@/stores/planetParams";
 
-  const planet = $derived(
-    new Planet(
-      $planetParams.radius,
-      $planetParams.divisions,
-      $planetParams.tileSize,
-    ),
-  );
+  const planet = new Planet();
 </script>
 
 <T.Mesh

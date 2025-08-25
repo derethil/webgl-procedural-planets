@@ -29,11 +29,9 @@ function tileDepth(
 
 function tileBiome(depth: number) {
   return match(depth)
-    .with(P.number.lte(MINIMUM_DEPTH), () => Biomes.Ocean)
-    .with(P.number.between(MINIMUM_DEPTH, 1.25), () => Biomes.Sand)
-    .with(P.number.between(1.25, 1.3), () => Biomes.Grass)
-    .with(P.number.between(1.3, 1.35), () => Biomes.Stone)
-    .otherwise(() => Biomes.Snow);
+    .with(P.number.lte(1.25), () => BiomeColors[Biomes.BarrenFlat])
+    .with(P.number.between(1.25, 1.3), () => BiomeColors[Biomes.BarrenHill])
+    .otherwise(() => BiomeColors[Biomes.BarrenMountain]);
 }
 
 export function tileAttributes(tile: Tile): TileAttributes {

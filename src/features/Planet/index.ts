@@ -1,3 +1,3 @@
-import { Planet } from "./components/Planet.svelte";
+import { Planet } from "./components/Planet";
 
 export { Planet };

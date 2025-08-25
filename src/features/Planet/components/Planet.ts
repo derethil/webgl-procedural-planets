@@ -1,12 +1,12 @@
 import type { IntersectionEvent } from "@threlte/extras";
+import { Hexasphere } from "hexasphere";
 import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js";
 import { Tile } from "@/features/Tile";
-import { Hexasphere } from "hexasphere";
 import { planetParams } from "@/state/planetParams.svelte";
 
 export class Planet {
   private tiles: Tile[];
-  private sphere = $derived(this.constructSphere());
+  private sphere = this.constructSphere();
 
   private faceToTileMap: Map<number, Tile> = new Map();
 

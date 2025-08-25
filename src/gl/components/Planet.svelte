@@ -2,7 +2,7 @@
   import { T } from "@threlte/core";
   import { Planet } from "@/features/Planet";
 
-  const planet = new Planet();
+  const planet = $derived(new Planet());
 </script>
 
 <T.Mesh

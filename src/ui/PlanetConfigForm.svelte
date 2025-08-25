@@ -1,17 +1,13 @@
 <script lang="ts">
-  import { makeSeed } from "@/features/Noise";
-  import { planetParams } from "@/state/planetParams.svelte";
+  import { newPlanet } from "@/state/planetParams.svelte";
   import { sceneParams } from "@/state/sceneParams.svelte";
-
-  const regenerate = () => planetParams.seed = makeSeed(20);
 </script>
 
 <div class="m-4">
   <div class="px-1 py-2">
     <button
       class="btn btn-ghost btn-outline btn-sm"
-      onclick={regenerate}
-      onkeyup={regenerate}
+      onclick={() => newPlanet()}
     >
       Generate new planet
     </button>

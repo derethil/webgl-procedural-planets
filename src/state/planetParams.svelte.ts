@@ -28,3 +28,7 @@ export const planetParams = $state({
     noiseRadius: 15,
   },
 });
+
+export function newPlanet() {
+  planetParams.seed = crypto.randomUUID();
+}

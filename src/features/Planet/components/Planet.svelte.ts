@@ -2,15 +2,15 @@ import type { IntersectionEvent } from "@threlte/extras";
 import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js";
 import { Tile } from "@/features/Tile";
 import { Hexsphere } from "@/lib/Hexsphere";
+import { planetParams } from "@/state/planetParams.svelte";
 
 export class Planet {
-  private sphere: Hexsphere;
   private tiles: Tile[];
+  private sphere = $derived(this.constructSphere());
 
   private faceToTileMap: Map<number, Tile> = new Map();
 
-  public constructor(radius: number, divisions: number, tileSize: number) {
-    this.sphere = new Hexsphere(radius, divisions, tileSize);
+  public constructor() {
     this.tiles = this.sphere.tiles.map((tile) => new Tile(this, tile));
 
     this.cacheTilesByFace();
@@ -42,5 +42,13 @@ export class Planet {
 
       faceOffset += tile.faceCount;
     });
+  }
+
+  private constructSphere() {
+    return new Hexsphere(
+      planetParams.radius,
+      planetParams.divisions,
+      planetParams.tileSize,
+    );
   }
 }

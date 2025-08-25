@@ -1,7 +1,7 @@
 <script lang="ts">
   import { T } from "@threlte/core";
   import { interactivity, OrbitControls, Stars } from "@threlte/extras";
-  import { sceneParams } from "@/stores/sceneParams";
+  import { sceneParams } from "@/state/sceneParams.svelte";
   import Planet from "./components/Planet.svelte";
   import Sun from "./components/Sun.svelte";
   import { useThrelteConfig } from "./hooks/config";
@@ -23,7 +23,7 @@
     enableZoom={true}
     enableDamping
     autoRotate
-    autoRotateSpeed={$sceneParams.autorotate ? 0.5 : 0}
+    autoRotateSpeed={sceneParams.autorotate ? 0.5 : 0}
   />
 </T.PerspectiveCamera>
 

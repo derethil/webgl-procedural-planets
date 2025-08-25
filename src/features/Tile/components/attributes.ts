@@ -1,4 +1,5 @@
 import { get } from "svelte/store";
+import { Vector3 } from "three";
 import { match, P } from "ts-pattern";
 import { getNoise } from "@/features/noise";
 import type { Tile } from "@/lib/Hexsphere";
@@ -21,7 +22,7 @@ function tileDepth(
   planetParams: PlanetParams,
   noiseParams: NoiseParams,
 ) {
-  const position = tile.centerPoint;
+  const position = new Vector3().copy(tile.centerPoint);
   const noise = getNoise(planetParams.seed, position, noiseParams);
   const depth = Math.max(noise + 1, MINIMUM_DEPTH);
   return Math.round(depth * 100) / 100;

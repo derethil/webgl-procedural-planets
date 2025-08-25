@@ -1,5 +1,6 @@
 import { get } from "svelte/store";
 import { match, P } from "ts-pattern";
+import { getNoise } from "@/features/noise";
 import type { Tile } from "@/lib/Hexsphere";
 import { noiseParams } from "@/stores/noiseParams";
 import {
@@ -8,9 +9,9 @@ import {
   planetParams as planetParamsStore,
 } from "@/stores/planetParams";
 import { type Biome, BiomeColors, Biomes } from "@/util/biomes";
-import { getNoise } from "../noise";
 
-const MINIMUM_DEPTH = 1.22;
+const MINIMUM_DEPTH = 1;
+export const OCEAN_DEPTH = 1.22;
 
 // A tile may have attributes that are derived from its position
 // on the planet.
@@ -33,7 +34,7 @@ function tileBiome(depth: number) {
     .otherwise(() => BiomeColors[Biomes.BarrenMountain]);
 }
 
-interface TileAttributes {
+export interface TileAttributes {
   depth: number;
   biome: Biome;
 }

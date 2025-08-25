@@ -1,6 +1,6 @@
 <script lang="ts">
   import { T } from "@threlte/core";
-  import { OrbitControls, Stars } from "@threlte/extras";
+  import { interactivity, OrbitControls, Stars } from "@threlte/extras";
   import { useThrelteConfig } from "@/features/threlteConfig";
   import { sceneParams } from "@/stores/sceneParams";
   import Planet from "./components/Planet.svelte";
@@ -9,6 +9,7 @@
 
   useThrelteConfig();
   injectLookAtPlugin();
+  interactivity();
 </script>
 
 <T.PerspectiveCamera

@@ -1,8 +1,3 @@
-import type { Tile } from "@/lib/Hexsphere";
-import { createInitialAttributes } from "./attributes";
-import { createTileGeometry } from "./geometry";
+import { Tile } from "./components/Tile";
 
-export function createTile(tile: Tile) {
-  const attributes = createInitialAttributes(tile);
-  return createTileGeometry(tile, attributes);
-}
+export { Tile };

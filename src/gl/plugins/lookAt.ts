@@ -1,4 +1,5 @@
 import { injectPlugin, useThrelte } from "@threlte/core";
+import type { AnyProps } from "node_modules/@threlte/core/dist/plugins/types";
 import { Vector3 } from "three";
 
 // Taken from https://threlte.xyz/docs/learn/advanced/plugins
@@ -30,11 +31,11 @@ export const injectLookAtPlugin = () => {
     };
     applyProps(currentProps, currentRef);
     return {
-      onRefChange(ref) {
+      onRefChange(ref: unknown) {
         currentRef = ref;
         applyProps(currentProps, currentRef);
       },
-      onPropsChange(props) {
+      onPropsChange(props: AnyProps) {
         currentProps = props;
         applyProps(currentProps, currentRef);
       },

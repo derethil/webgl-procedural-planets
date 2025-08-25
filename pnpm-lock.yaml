@@ -17,6 +17,9 @@ importers:
       alea:
         specifier: ^1.0.1
         version: 1.0.1
+      hexasphere:
+        specifier: ^1.0.2
+        version: 1.0.2
       simplex-noise:
         specifier: ^4.0.3
         version: 4.0.3
@@ -957,6 +960,10 @@ packages:
   has-flag@4.0.0:
     resolution: {integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==}
     engines: {node: '>=8'}
+
+  hexasphere@1.0.2:
+    resolution: {integrity: sha512-cLCj3Uf5x1eAH0lLPK8zhQEgrw/zgQTNkak8fEPl+ZHn+LVzHxQWfafpK8Xu9WA7y85fSGh+tBLOK8na9uRbFQ==}
+    engines: {node: '>=14.0.0'}
 
   ignore@5.3.2:
     resolution: {integrity: sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==}
@@ -2339,6 +2346,8 @@ snapshots:
   graphemer@1.4.0: {}
 
   has-flag@4.0.0: {}
+
+  hexasphere@1.0.2: {}
 
   ignore@5.3.2: {}
 

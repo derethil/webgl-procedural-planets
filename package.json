@@ -38,6 +38,7 @@
     "@threlte/core": "^8.1.4",
     "@threlte/extras": "^9.4.5",
     "alea": "^1.0.1",
+    "hexasphere": "^1.0.2",
     "simplex-noise": "^4.0.3",
     "three": "^0.179.1",
     "ts-pattern": "^5.8.0"

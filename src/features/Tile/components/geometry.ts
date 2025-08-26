@@ -1,8 +1,8 @@
-import { BufferGeometry, Float32BufferAttribute } from "three";
 import type { Tile } from "hexasphere";
+import { BufferGeometry, Float32BufferAttribute } from "three";
 import type { TileAttributes } from "./attributes";
 
-const tileVertices = (tile: Tile, attributes: TileAttributes) => {
+export function mapTileToVertexArray(tile: Tile, attributes: TileAttributes) {
   return tile.boundary.flatMap((vertex) => [
     // Interior Vertices
     vertex.x,
@@ -13,11 +13,11 @@ const tileVertices = (tile: Tile, attributes: TileAttributes) => {
     vertex.y * attributes.depth,
     vertex.z * attributes.depth,
   ]);
-};
+}
 
 // Calculate indices for tile geometry (triangles)
 // Because we're using BufferGeometry, we need to specify the indices
-const tileIndices = (tile: Tile): number[] => {
+export function mapTileToIndexArray(tile: Tile): number[] {
   const isHex = tile.boundary.length === 6;
   const numSideVertices = isHex ? 11 : 9;
   const indices: number[] = [];
@@ -35,14 +35,14 @@ const tileIndices = (tile: Tile): number[] => {
   }
 
   return indices;
-};
+}
 
 // Calculate the geometry for a tile
 // We use BufferGeometry here because the  tiles give us
 // arrays of vertices, and BufferGeometry is more efficient
 export const createTileGeometry = (tile: Tile, attributes: TileAttributes) => {
-  const vertices = tileVertices(tile, attributes);
-  const indices = tileIndices(tile);
+  const vertices = mapTileToVertexArray(tile, attributes);
+  const indices = mapTileToIndexArray(tile);
   const geometry = new BufferGeometry();
 
   const color = attributes.biome.color;

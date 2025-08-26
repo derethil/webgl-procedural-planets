@@ -1,10 +1,10 @@
 # WebGL Planets
 
-A simple WebGL project to render hexagonally tiled planets in the browser with procedurally generation. You can view the live demo [here](https://webgl-procedural-planets.vercel.app/).
+A simple WebGL project to render hexagonally tiled planets in the browser with
+procedurally generation. You can view the live demo
+[here](https://webgl-procedural-planets.vercel.app/).
 
 ![image](https://github.com/derethil/webgl-procedural-planets/assets/25184096/f17a0f68-6d7e-4aa6-961a-a10e80726010)
-
-
 
 ## Tools Used
 
@@ -18,7 +18,7 @@ A simple WebGL project to render hexagonally tiled planets in the browser with p
 ```bash
 git clone
 cd webgl-procedural-planets
-yarn install
+pnpm install
 ```
 
-Then run `yarn dev` to start the development server.
+Then run `pnpm dev` to start the development server.

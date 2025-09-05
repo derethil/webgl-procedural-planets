@@ -39,6 +39,8 @@
     "alea": "^1.0.1",
     "hexasphere": "^1.0.2",
     "simplex-noise": "^4.0.3",
+    "tailwind-merge": "^3.3.1",
+    "tailwind-variants": "^3.1.0",
     "three": "^0.179.1",
     "ts-pattern": "^5.8.0"
   }

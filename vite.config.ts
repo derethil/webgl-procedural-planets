@@ -1,12 +1,9 @@
-import postcss from "./postcss.config.js";
-import { defineConfig } from "vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
+import tailwindcss from "@tailwindcss/vite";
+import { defineConfig } from "vite";
 
 export default defineConfig({
-  plugins: [svelte()],
-  css: {
-    postcss,
-  },
+  plugins: [svelte(), tailwindcss()],
   ssr: {
     noExternal: ["three", "troika-three-text"],
   },

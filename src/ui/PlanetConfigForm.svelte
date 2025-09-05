@@ -1,5 +1,6 @@
 <script lang="ts">
-import { planetParams } from "@/state/planetParams.svelte";
+  import { Checkbox, Slider } from "@/components";
+  import { planetParams } from "@/state/planetParams.svelte";
   import { newPlanet } from "@/state/planetParams.svelte";
   import { sceneParams } from "@/state/sceneParams.svelte";
 </script>
@@ -14,40 +15,25 @@ import { planetParams } from "@/state/planetParams.svelte";
     </button>
   </div>
 
-  <label class="label cursor-pointer">
-    <span class="label-text">Autorotate</span>
-    <input
-      type="checkbox"
-      class="toggle toggle-success"
-      checked={sceneParams.autorotate}
-      onclick={() => (sceneParams.autorotate = !sceneParams.autorotate)}
-    />
-  </label>
+  <Checkbox
+    label="Autorotate"
+    checked={sceneParams.autorotate}
+    onchange={(value) => (sceneParams.autorotate = value)}
+  />
 
-  <label class="label cursor-pointer">
-    <span class="label-text">Radius</span>
-    <input
-      type="range"
-      class="range w-full"
-      min={1}
-      max={50}
-      value={planetParams.radius}
-      onchange={(e) => (planetParams.radius = +(e.target as HTMLInputElement).value)}
-    />
-  </label>
+  <Slider
+    label="Radius"
+    min={1}
+    max={50}
+    value={planetParams.radius}
+    onchange={(value) => (planetParams.radius = value)}
+  />
 
-
-  <label class="label cursor-pointer">
-    <span class="label-text">Divisions</span>
-    <input
-      type="range"
-      class="range w-full"
-      min={10}
-      max={50}
-      value={planetParams.divisions}
-      onchange={(e) => (planetParams.divisions = +(e.target as HTMLInputElement).value)}
-    />
-  </label>
-
-
+  <Slider
+    label="Divisions"
+    min={10}
+    max={50}
+    value={planetParams.divisions}
+    onchange={(value) => (planetParams.divisions = value)}
+  />
 </div>

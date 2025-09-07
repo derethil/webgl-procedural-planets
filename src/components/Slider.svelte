@@ -4,11 +4,12 @@
     value: number;
     min: number;
     max: number;
+    step?: number;
     onchange: (value: number) => void;
     immediate?: boolean;
   }
 
-  let { label, value, min, max, onchange, immediate }: SliderProps =
+  let { label, value, min, max, step, onchange, immediate }: SliderProps =
     $props();
 </script>
 
@@ -21,6 +22,7 @@
     {min}
     {max}
     {value}
+    {step}
     onchange={(e) => {
       if (!immediate) onchange(+(e.target as HTMLInputElement).value);
     }}

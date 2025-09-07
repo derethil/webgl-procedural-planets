@@ -1,6 +1,6 @@
 <script lang="ts">
   import { T } from "@threlte/core";
-  import { interactivity, OrbitControls, Stars } from "@threlte/extras";
+  import { interactivity, OrbitControls } from "@threlte/extras";
   import { sceneParams } from "@/state/sceneParams.svelte";
   import Planet from "./components/Planet.svelte";
   import Sun from "./components/Sun.svelte";
@@ -19,7 +19,7 @@
   fov={24}
 >
   <OrbitControls
-    enablePan={true}
+    enablePan={false}
     enableZoom={true}
     enableDamping
     autoRotate
@@ -27,10 +27,8 @@
   />
 </T.PerspectiveCamera>
 
-<T.AmbientLight intensity={0.05} />
+<T.AmbientLight intensity={0.2} />
 
 <Sun />
 
 <Planet />
-
-<Stars depth={1024} factor={64} count={5000} />

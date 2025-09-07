@@ -3,5 +3,5 @@ interface SceneParams {
 }
 
 export const sceneParams = $state<SceneParams>({
-  autorotate: true,
+  autorotate: false,
 });

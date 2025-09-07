@@ -31,9 +31,18 @@
 
   <Slider
     label="Divisions"
-    min={10}
+    min={2}
     max={50}
     value={planetParams.divisions}
     onchange={(value) => (planetParams.divisions = value)}
+  />
+
+  <Slider
+    label="tileSize"
+    min={0}
+    max={1}
+    step={0.1}
+    value={planetParams.tileSize}
+    onchange={(value) => (planetParams.tileSize = value)}
   />
 </div>

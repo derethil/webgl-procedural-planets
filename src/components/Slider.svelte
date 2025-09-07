@@ -5,9 +5,11 @@
     min: number;
     max: number;
     onchange: (value: number) => void;
+    immediate?: boolean;
   }
 
-  let { label, value, min, max, onchange }: SliderProps = $props();
+  let { label, value, min, max, onchange, immediate }: SliderProps =
+    $props();
 </script>
 
 <label class="label cursor-pointer" for={label}>
@@ -19,6 +21,11 @@
     {min}
     {max}
     {value}
-    oninput={(e) => onchange(+(e.target as HTMLInputElement).value)}
+    onchange={(e) => {
+      if (!immediate) onchange(+(e.target as HTMLInputElement).value);
+    }}
+    oninput={(e) => {
+      if (immediate) onchange(+(e.target as HTMLInputElement).value);
+    }}
   />
 </label>

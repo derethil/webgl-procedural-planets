@@ -5,5 +5,5 @@
   const planet = $derived(new Planet());
 </script>
 
-<InstancedCells cells={planet.pentagonalCells} color="yellow" />
-<InstancedCells cells={planet.hexagonalCells} color="green" />
+<InstancedCells cells={planet.pentagonalCells} />
+<InstancedCells cells={planet.hexagonalCells} />

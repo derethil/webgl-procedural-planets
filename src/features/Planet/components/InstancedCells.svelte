@@ -5,10 +5,9 @@
 
   interface InstancedTilesProps {
     cells: Cell[];
-    color: string;
   }
 
-  const { cells, color }: InstancedTilesProps = $props();
+  const { cells }: InstancedTilesProps = $props();
 </script>
 
 {#if cells.length > 0}
@@ -21,9 +20,11 @@
 
     {#each cells as cell (cell.tile.toString())}
       <Instance
-        {color}
+        color={cell.color}
         position={[cell.center.x, cell.center.y, cell.center.z]}
         rotation={cell.rotation}
+        onpointerenter={() => cell.handlePointerEnter()}
+        onpointerleave={() => cell.handlePointerLeave()}
       />
     {/each}
   </InstancedMesh>

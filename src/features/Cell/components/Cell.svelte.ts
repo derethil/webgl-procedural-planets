@@ -1,11 +1,32 @@
 import type { Tile as HexTile } from "hexasphere";
 import { calculateSurfaceNormal } from "hexasphere/dist/tile";
-import { Euler, Matrix4, Vector3 } from "three";
+import { cubicOut } from "svelte/easing";
+import { Tween } from "svelte/motion";
+import { Color, Euler, Matrix4, Vector3 } from "three";
 import { memo } from "../util/memo";
 
 export class Cell {
   public readonly tile: HexTile;
   public readonly pentagon: boolean = false;
+
+  private readonly tween = new Tween(0, { easing: cubicOut, duration: 250 });
+
+  private startColor = new Color("blue");
+  private endColor = new Color("yellow");
+
+  public readonly color = $derived(
+    this.startColor.clone().lerp(this.endColor, this.tween.current),
+  );
+
+  public handlePointerEnter() {
+    console.log("enter");
+    this.tween.set(1);
+  }
+
+  public handlePointerLeave() {
+    console.log("leave");
+    this.tween.set(0);
+  }
 
   public constructor(tile: HexTile) {
     this.tile = tile;

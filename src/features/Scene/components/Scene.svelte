@@ -9,7 +9,7 @@
 
   useThrelteConfig();
   injectLookAtPlugin();
-  interactivity();
+  interactivity({ filter: (items) => items.slice(0, 1) });
 </script>
 
 <T.PerspectiveCamera

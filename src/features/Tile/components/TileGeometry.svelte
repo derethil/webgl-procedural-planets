@@ -28,16 +28,14 @@
     const centerPoint = cell.center;
     const normal = calculateTileNormal(cell);
 
-    // Create transformation matrix using lookAt (same approach as Cell.rotation)
     const matrix = new Matrix4();
     const center = new Vector3(...centerPoint);
     const target = center.clone().add(
       new Vector3(normal.x, normal.y, normal.z),
     );
 
-    matrix.lookAt(center, target, new Vector3(0, 1, 0));
+    matrix.lookAt(center, target, cell.up);
 
-    // Invert to get the transformation that aligns surface normal to +Z
     const rotationMatrix = matrix.clone().invert();
 
     const vertices: number[] = [];

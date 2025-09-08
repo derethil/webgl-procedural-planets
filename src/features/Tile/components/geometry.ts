@@ -7,9 +7,9 @@ export const createVertices = (tile: Tile) => {
     vertex.y,
     vertex.z,
     // Exterior Vertices
-    vertex.x * 1.1,
-    vertex.y * 1.1,
-    vertex.z * 1.1,
+    vertex.x * 1,
+    vertex.y * 1,
+    vertex.z * 1,
   ]);
 };
 

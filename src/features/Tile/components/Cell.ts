@@ -24,8 +24,14 @@ export class Cell {
     return [x / count, y / count, z / count];
   }
 
-  public get position(): [number, number, number] {
-    return this.center;
+  public get up() {
+    const vertex = this.tile.boundary[0];
+    const center = new Vector3(...this.center);
+    return new Vector3(
+      vertex.x - center.x,
+      vertex.y - center.y,
+      vertex.z - center.z,
+    ).normalize();
   }
 
   public get rotation(): [number, number, number] {
@@ -41,7 +47,7 @@ export class Cell {
     const surfaceVector = new Vector3(normal.x, normal.y, normal.z);
     const target = center.clone().add(surfaceVector);
 
-    matrix.lookAt(center, target, new Vector3(0, 1, 0));
+    matrix.lookAt(center, target, this.up);
 
     const euler = new Euler();
     euler.setFromRotationMatrix(matrix);

@@ -23,7 +23,7 @@
     {#each cells as cell (cell.tile.toString())}
       <Instance
         {color}
-        position={cell.center}
+        position={[cell.center.x, cell.center.y, cell.center.z]}
         rotation={cell.rotation}
       />
     {/each}

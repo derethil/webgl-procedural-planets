@@ -6,6 +6,7 @@
       "@/*": ["./src/*"]
     },
     "target": "ESNext",
+    "experimentalDecorators": true,
     "useDefineForClassFields": true,
     "module": "ESNext",
     "resolveJsonModule": true,

@@ -1,6 +1,7 @@
 import type { Tile as HexTile } from "hexasphere";
 import { calculateSurfaceNormal } from "hexasphere/dist/tile";
 import { Euler, Matrix4, Vector3 } from "three";
+import { memo } from "../util/memo";
 
 export class Cell {
   public readonly tile: HexTile;
@@ -11,19 +12,19 @@ export class Cell {
     this.pentagon = tile.boundary.length === 5;
   }
 
-  public get center(): [number, number, number] {
-    let x = 0, y = 0, z = 0;
+  @memo
+  public get center(): Vector3 {
+    const center = new Vector3();
     const count = this.tile.boundary.length;
 
     this.tile.boundary.forEach((vertex) => {
-      x += vertex.x;
-      y += vertex.y;
-      z += vertex.z;
+      center.add(new Vector3(vertex.x, vertex.y, vertex.z));
     });
 
-    return [x / count, y / count, z / count];
+    return center.divideScalar(count);
   }
 
+  @memo
   public get up() {
     const vertex = this.tile.boundary[0];
     const center = new Vector3(...this.center);
@@ -34,23 +35,31 @@ export class Cell {
     ).normalize();
   }
 
-  public get rotation(): [number, number, number] {
+  @memo
+  public get normal() {
     const boundary = this.tile.boundary;
+
     const normal = calculateSurfaceNormal(
       boundary[0],
       boundary[1],
       boundary[2],
     );
 
+    return new Vector3(normal.x, normal.y, normal.z).normalize();
+  }
+
+  @memo
+  public get matrix() {
     const matrix = new Matrix4();
-    const center = new Vector3(...this.center);
-    const surfaceVector = new Vector3(normal.x, normal.y, normal.z);
-    const target = center.clone().add(surfaceVector);
+    const target = this.center.clone().add(this.normal);
+    matrix.lookAt(this.center, target, this.up);
+    return matrix;
+  }
 
-    matrix.lookAt(center, target, this.up);
-
+  @memo
+  public get rotation(): [number, number, number] {
     const euler = new Euler();
-    euler.setFromRotationMatrix(matrix);
+    euler.setFromRotationMatrix(this.matrix);
 
     return [euler.x, euler.y, euler.z];
   }

@@ -1,12 +1,12 @@
 <script lang="ts">
   import { Canvas } from "@threlte/core";
-  import MainScene from "./gl/MainScene.svelte";
-  import PlanetConfigForm from "./ui/PlanetConfigForm.svelte";
+  import { PlanetConfigForm } from "@/features/PlanetConfigForm";
+  import { Scene } from "@/features/Scene";
 </script>
 
 <div class="h-screen">
   <Canvas>
-    <MainScene />
+    <Scene />
   </Canvas>
 </div>
 

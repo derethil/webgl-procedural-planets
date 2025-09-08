@@ -42,7 +42,10 @@
 />
 
 {#await sunTexture then texture}
-  <T.Mesh position={position.clone().multiplyScalar(10).toArray()} lookAt={[0, 0, 0]}>
+  <T.Mesh
+    position={position.clone().multiplyScalar(10).toArray()}
+    lookAt={[0, 0, 0]}
+  >
     <T.PlaneGeometry args={[24, 24]} />
     <T.MeshBasicMaterial side={DoubleSide} map={texture} transparent />
   </T.Mesh>

@@ -1,11 +1,11 @@
 <script lang="ts">
   import { T } from "@threlte/core";
   import { interactivity, OrbitControls } from "@threlte/extras";
+  import { Planet } from "@/features/Planet";
+  import { Sun } from "@/features/Sun";
   import { sceneParams } from "@/state/sceneParams.svelte";
-  import Planet from "./components/Planet.svelte";
-  import Sun from "./components/Sun.svelte";
-  import { useThrelteConfig } from "./hooks/config";
-  import { injectLookAtPlugin } from "./plugins/lookAt";
+  import { useThrelteConfig } from "../hooks/useThrelteConfig";
+  import { injectLookAtPlugin } from "../plugins/lookAt";
 
   useThrelteConfig();
   injectLookAtPlugin();

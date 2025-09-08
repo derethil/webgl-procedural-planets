@@ -1,8 +1,8 @@
+import type { Tile } from "hexasphere";
 import { Vector3 } from "three";
 import { match, P } from "ts-pattern";
 import { type Biome, BiomeColors, Biomes } from "@/features/Biomes";
 import { getNoise } from "@/features/Noise";
-import type { Tile } from "hexasphere";
 import { type PlanetParams, planetParams } from "@/state/planetParams.svelte";
 
 const MINIMUM_DEPTH = 1;

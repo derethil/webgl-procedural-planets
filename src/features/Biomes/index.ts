@@ -1,4 +1,4 @@
-import { type ColorArray, hexToColorArray } from "@/gl/util";
+import { type ColorArray, hexToColorArray } from "./util/color";
 
 export interface Biome {
   color: ColorArray;

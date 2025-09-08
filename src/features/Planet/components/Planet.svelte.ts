@@ -1,5 +1,5 @@
 import { Hexasphere } from "hexasphere";
-import { Cell } from "@/features/Cell/components/Cell";
+import { Cell } from "@/features/Cell";
 import { planetParams } from "@/state/planetParams.svelte";
 
 export class Planet {

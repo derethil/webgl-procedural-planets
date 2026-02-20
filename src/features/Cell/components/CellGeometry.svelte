@@ -1,7 +1,7 @@
 <script lang="ts">
   import { T } from "@threlte/core";
   import type { Tile } from "hexasphere";
-  import { BufferGeometry, Float32BufferAttribute, Vector3 } from "three";
+  import { BufferGeometry, Float32BufferAttribute } from "three";
   import type { Cell } from "./Cell";
 
   interface TileGeometryProps {
@@ -46,18 +46,8 @@
   const geometry = $derived(() => {
     const raw = createVertices(cell.tile);
     const indices = createIndices(cell.tile);
-    const rotationMatrix = cell.matrix.clone().invert();
 
-    const vertices: number[] = [];
-
-    for (let i = 0; i < raw.length; i += 3) {
-      const vertex = new Vector3(raw[i], raw[i + 1], raw[i + 2]);
-      const translated = vertex.sub(cell.center);
-      translated.applyMatrix4(rotationMatrix);
-      vertices.push(translated.x, translated.y, translated.z);
-    }
-
-    const position = new Float32BufferAttribute(vertices, 3, false);
+    const position = new Float32BufferAttribute(raw, 3, false);
 
     const geometry = new BufferGeometry();
     geometry.setAttribute("position", position);

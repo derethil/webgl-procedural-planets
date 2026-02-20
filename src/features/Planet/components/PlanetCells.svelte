@@ -1,9 +1,9 @@
 <script lang="ts">
-  import InstancedCells from "./InstancedCells.svelte";
+  import Cells from "./Cells.svelte";
   import { Planet } from "./Planet.svelte";
 
   const planet = $derived(new Planet());
 </script>
 
-<InstancedCells cells={planet.pentagonalCells} />
-<InstancedCells cells={planet.hexagonalCells} />
+<Cells cells={planet.pentagonalCells} />
+<Cells cells={planet.hexagonalCells} />

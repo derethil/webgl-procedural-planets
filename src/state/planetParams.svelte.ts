@@ -16,7 +16,7 @@ export type NoiseParams = PlanetParams["noise"];
 export const planetParams = $state({
   seed: "default",
   radius: 20,
-  divisions: 1,
+  divisions: 10,
   tileSize: 1,
   noise: {
     get frequency() {
